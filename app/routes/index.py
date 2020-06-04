@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, session, redirect, url_for, request
+from flask import Blueprint, render_template, session, redirect, url_for
 
 bp_idx = Blueprint('index', __name__)
 
@@ -11,7 +11,7 @@ def index():
 
 @bp_idx.route('/login')
 def login():
-    if session['logged_in'] == True:
+    if session['logged_in']:
         user_name = session['name']
         if session['identity'] == 'user':
             return redirect(url_for('bp_user.user_index', name=user_name))
@@ -23,9 +23,9 @@ def login():
 
 @bp_idx.route('/login_confirm')
 def login_confirm():
-    data = request.args()
+    # data = request.args()
 
-    return
+    return ""
 
 
 @bp_idx.route('/signup')
