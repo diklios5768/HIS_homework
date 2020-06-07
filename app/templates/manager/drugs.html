@@ -1,0 +1,73 @@
+{% extends "user/user_index.html" %}
+{% block main %}
+    <form class="layui-form" action="">
+        <div class="layui-form-item">
+            <div class="layui-inline">
+                <label class="layui-form-label">药品名称</label>
+                <div class="layui-input-inline" style="width: 500px;">
+                    <input type="text" name="price_min" placeholder="请输入药品进行查询" autocomplete="off" class="layui-input">
+                </div>
+                <button class="layui-btn">确认</button>
+                <button class="layui-btn layui-btn-normal">添加</button>
+            </div>
+        </div>
+    </form>
+    <table id="table_drugs" lay-filter="table_drugs"></table>
+{% endblock %}
+{% block script %}
+    <script type="text/html" id="bar">
+        <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">详细信息</a>
+        <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+        <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+    </script>
+    <script>
+        layui.use('form', function () {
+            let form = layui.form;
+        });
+        layui.use('table', function () {
+            let table = layui.table;
+            table.render({
+                elem: '#table_drugs'
+                , page: true //开启分页
+                , cols: [[ //表头
+                    {type: 'checkbox', fixed: 'left'},
+                    {field: 'id', title: '药品id', sort: true, fixed: true},
+                    {field: 'name', title: '药品名称'},
+                    {field: 'unit', title: '单位'},
+                    {field: 'classification', title: '种类'},
+                    {field: 'price', title: '价格（元）'},
+                    {fixed: 'right', width: 300, align: 'center', toolbar: '#bar'}
+                ]]
+                , data: [{
+                    id: '1',
+                    name: '藿香正气水',
+                    classification: '口服酊膏剂',
+                    unit: '瓶',
+                    price: '20',
+                }]
+            });
+            table.on('tool(table_drugs)', function (obj) {
+                if (obj.event === 'detail') {
+                    layer.open(
+                        {
+                            title: '药品详细信息',
+                            type: '1',
+                            content: ''
+                        }
+                    );
+                } else if (obj.event === 'add') {
+                    obj.update({
+                        get_drugs: '已拿药'
+                    })
+                } else if (obj.event === 'edit') {
+
+                } else if (obj.event === 'del') {
+                    layer.confirm('真的删除行么', function (index) {
+                        obj.del();
+                        layer.close(index);
+                    });
+                }
+            })
+        });
+    </script>
+{% endblock %}

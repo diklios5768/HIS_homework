@@ -1,0 +1,104 @@
+{% extends "user/user_index.html" %}
+{% block main %}
+    <form class="layui-form" action="">
+        <div class="layui-form-item">
+            <div class="layui-inline">
+                <label class="layui-form-label">诊疗单号</label>
+                <div class="layui-input-inline" style="width: 500px;">
+                    <input type="text" name="price_min" placeholder="请输入诊疗单号查询" autocomplete="off" class="layui-input">
+                </div>
+                <button class="layui-btn">确认</button>
+            </div>
+        </div>
+    </form>
+    <table id="table_treatment" lay-filter="table_treatment"></table>
+{% endblock %}
+{% block script %}
+    <script type="text/html" id="bar">
+        <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">查看</a>
+        <a class="layui-btn layui-btn-xs" lay-event="purchased">标记已付款</a>
+        <a class="layui-btn layui-btn-xs" lay-event="get_drugs">标记已拿药</a>
+        <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+    </script>
+    <script>
+        layui.use('form', function () {
+            let form = layui.form;
+        });
+        layui.use('table', function () {
+            let table = layui.table;
+            table.render({
+                elem: '#table_treatment'
+                , page: true //开启分页
+                , cols: [[ //表头
+                    {type: 'checkbox', fixed: 'left'},
+                    {field: 'id', title: 'ID', sort: true, fixed: true},
+                    {field: 'register_id', title: '挂号单号'},
+                    {field: 'name', title: '患者名称'},
+                    {field: 'doctor', title: '主治医师'},
+                    {field: 'price', title: '价格（元）'},
+                    {field: 'purchased', title: '是否付款'},
+                    {field: 'get_drugs', title: '是否拿药'},
+                    {fixed: 'right', width: 300, align: 'center', toolbar: '#bar'}
+                ]]
+                , data: [{
+                    id: '1',
+                    register_id: '4156116',
+                    name: '袁子奇',
+                    doctor: '周在雍',
+                    price: '25',
+                    purchased: '未付款',
+                    get_drugs: '已拿药'
+                }, {
+                    id: '2',
+                    register_id: '2652565',
+                    name: '吴哲凯',
+                    doctor: '周在雍',
+                    price: '250',
+                    purchased: '未付款',
+                    get_drugs: '未拿药'
+                }, {
+                    id: '3',
+                    register_id: '5616162',
+                    name: '许可',
+                    doctor: '周在雍',
+                    price: '55',
+                    purchased: '未付款',
+                    get_drugs: '已拿药'
+                }, {
+                    id: '4',
+                    register_id: '1651616',
+                    name: '？？？',
+                    doctor: '周在雍',
+                    price: '80',
+                    purchased: '未付款',
+                    get_drugs: '未拿药'
+                }]
+            });
+            table.on('tool(table_treatment)', function (obj) {
+                let data = obj.data;
+                if (obj.event === 'purchased') {
+                    obj.update({
+                        purchased: '已付款'
+                    })
+                } else if (obj.event === 'del') {
+                    layer.confirm('真的删除行么', function (index) {
+                        obj.del();
+                        layer.close(index);
+                    });
+                } else if (obj.event === 'get_drugs') {
+                    obj.update({
+                        get_drugs: '已拿药'
+                    })
+                } else if (obj.event === 'detail') {
+                    layer.open(
+                        {
+                            title: '诊疗结果',
+                            type: '1',
+                            content: '诊疗结果和处方：'
+                        }
+                    );
+                }
+            })
+        });
+    </script>
+{% endblock %}

@@ -1,0 +1,54 @@
+{% extends "user/user_index.html" %}
+{% block main %}
+    <form class="layui-form" action="">
+        <div class="layui-form-item">
+            <label class="layui-form-label">患者名称</label>
+            <div class="layui-input-block">
+                <input type="text" class="layui-input" name="patient_name" placeholder="请输入患者的名称" required
+                       lay-verify="required"
+                       autocomplete="off">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">挂号科室</label>
+            <div class="layui-input-block">
+                <select name="first_department" lay-verify="required" autocomplete="off">
+                    <option value="0" selected>请选择科室</option>
+                    <optgroup label="门诊部">
+                        <option value="">内科</option>
+                        <option value="">外科</option>
+                    </optgroup>
+                </select>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">主治医生</label>
+            <div class="layui-input-block">
+                <select name="doctor" lay-verify="required" autocomplete="off">
+                    <option value="0" selected>请选择医生</option>
+                    <option value="">周在雍</option>
+                    <option value="">王兆恒 主任</option>
+                </select>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">病症详情</label>
+            <div class="layui-input-block">
+                <input type="text" class="layui-input" name="disease" placeholder="请输入一些症状描述信息" autocomplete="off">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-input-block">
+                <button class="layui-btn" lay-submit>立即提交</button>
+                <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+            </div>
+        </div>
+    </form>
+{% endblock %}
+{% block script %}
+    <script>
+        layui.use('form', function () {
+            let form = layui.form;
+        });
+    </script>
+{% endblock %}

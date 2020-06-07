@@ -14,4 +14,4 @@ class User(Base):
     email = db.Column(db.Text)
     phone = db.Column(db.BigInteger)
     last_login = db.Column(db.DateTime)
-    user_identity_id = db.Column(db.Integer, db.ForeignKey('user_identity.id'))
+    user_identity_name = db.Column(db.Integer, db.ForeignKey('user_identity.name'))

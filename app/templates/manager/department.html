@@ -1,0 +1,76 @@
+{% extends "user/user_index.html" %}
+{% block main %}
+    <form class="layui-form" action="">
+        <div class="layui-form-item">
+            <div class="layui-inline">
+                <label class="layui-form-label">科室名称</label>
+                <div class="layui-input-inline" style="width: 500px;">
+                    <input type="text" name="price_min" placeholder="请输入科室进行查询" autocomplete="off" class="layui-input">
+                </div>
+                <button class="layui-btn">确认</button>
+                <button class="layui-btn layui-btn-normal">添加</button>
+            </div>
+        </div>
+    </form>
+    <table id="table_department" lay-filter="table_department"></table>
+{% endblock %}
+{% block script %}
+    <script type="text/html" id="bar">
+        <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">详细信息</a>
+        <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+        <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+    </script>
+    <script>
+        layui.use('form', function () {
+            let form = layui.form;
+        });
+        layui.use('table', function () {
+            let table = layui.table;
+            table.render({
+                elem: '#table_department'
+                , page: true //开启分页
+                , cols: [[ //表头
+                    {type: 'checkbox', fixed: 'left'},
+                    {field: 'id', title: '科室id', sort: true, fixed: true},
+                    {field: 'name', title: '科室名称'},
+                    {fixed: 'right', width: 300, align: 'center', toolbar: '#bar'}
+                ]]
+                , data: [{
+                    id: '1',
+                    name: '内科',
+                }, {
+                    id: '2',
+                    name: '外科',
+                }, {
+                    id: '3',
+                    name: '儿科',
+                }, {
+                    id: '4',
+                    name: '妇科'
+                }]
+            });
+            table.on('tool(table_department)', function (obj) {
+                if (obj.event === 'detail') {
+                    layer.open(
+                        {
+                            title: '科室详细信息',
+                            type: '1',
+                            content: ''
+                        }
+                    );
+                } else if (obj.event === 'add') {
+                    obj.update({
+                        get_drugs: '已拿药'
+                    })
+                } else if (obj.event === 'edit') {
+
+                } else if (obj.event === 'del') {
+                    layer.confirm('真的删除行么', function (index) {
+                        obj.del();
+                        layer.close(index);
+                    });
+                }
+            })
+        });
+    </script>
+{% endblock %}

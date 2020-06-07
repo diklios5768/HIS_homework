@@ -1,0 +1,75 @@
+{% extends "user/user_index.html" %}
+{% block main %}
+    <form class="layui-form" action="">
+        <div class="layui-form-item">
+            <div class="layui-inline">
+                <label class="layui-form-label">挂号单号</label>
+                <div class="layui-input-inline" style="width: 500px;">
+                    <input type="text" name="price_min" placeholder="请输入挂号单号查询" autocomplete="off" class="layui-input">
+                </div>
+                <button class="layui-btn">确认</button>
+            </div>
+        </div>
+    </form>
+    <table id="table_register" lay-filter="table_register"></table>
+{% endblock %}
+{% block script %}
+    <script type="text/html" id="bar">
+        <a class="layui-btn layui-btn-xs" lay-event="purchased">标记已付款</a>
+        <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+    </script>
+    <script>
+        layui.use('form', function () {
+            let form = layui.form;
+        });
+        layui.use('table', function () {
+            let table = layui.table;
+            table.render({
+                elem: '#table_register'
+                , page: true //开启分页
+                , cols: [[ //表头
+                    {type: 'checkbox', fixed: 'left'},
+                    {field: 'id', title: 'ID', sort: true, fixed: true},
+                    {field: 'register_id', title: '挂号单号'},
+                    {field: 'name', title: '患者名称'},
+                    {field: 'state', title: '是否付款'},
+                    {fixed: 'right', width: 180, align: 'center', toolbar: '#bar'}
+                ]]
+                , data: [{
+                    id: '1',
+                    register_id: '4156116',
+                    name: '袁子奇',
+                    state: '未付款',
+                }, {
+                    id: '2',
+                    register_id: '2652565',
+                    name: '吴哲凯',
+                    state: '未付款',
+                }, {
+                    id: '3',
+                    register_id: '5616162',
+                    name: '许可',
+                    state: '未付款',
+                }, {
+                    id: '4',
+                    register_id: '1651616',
+                    name: '？？？',
+                    state: '未付款',
+                }]
+            });
+            table.on('tool(table_register)', function (obj) {
+                let data = obj.data;
+                if (obj.event === 'purchased') {
+                    obj.update({
+                        state: '已付款'
+                    })
+                } else if (obj.event === 'del') {
+                    layer.confirm('真的删除行么', function (index) {
+                        obj.del();
+                        layer.close(index);
+                    });
+                }
+            })
+        });
+    </script>
+{% endblock %}

@@ -1,14 +1,15 @@
 import click
 import os
+
 from flask import Flask
 
+from app import routes
 from app.models import db
 from app.models.base import *
 from app.models.doctor import *
 from app.models.hospital import *
 from app.models.medical_treatment import *
 from app.models.user import *
-from . import routes
 
 
 def create_app():

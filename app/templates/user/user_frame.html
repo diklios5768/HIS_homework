@@ -1,0 +1,50 @@
+{% extends "frame/zui_frame.html" %}
+{% block header %}
+    <title>挂号管理</title>
+    {{ super() }}
+{% endblock %}
+{% block body %}
+    <div class="container-fluid">
+        {% block navbar %}
+            <nav class="navbar" role="navigation">
+                <div class="container-fluid">
+                    <!-- 导航头部 -->
+                    <div class="navbar-header">
+                        <!-- 品牌名称或logo -->
+                        <a class="navbar-brand" href="#">挂号管理</a>
+                    </div>
+                    <!-- 导航项目 -->
+                    {#                    <div class="collapse navbar-collapse">#}
+                    {#                        <!-- 一般导航项目 -->#}
+                    {#                        <ul class="nav navbar-nav">#}
+                    {#                            <li class="active"><a href="your/nice/url">项目</a></li>#}
+                    {#                            <li><a href="#">需求</a></li>#}
+                    {#                            <!-- 导航中的下拉菜单 -->#}
+                    {#                            <li class="dropdown">#}
+                    {#                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">管理 <b#}
+                    {#                                        class="caret"></b></a>#}
+                    {#                                <ul class="dropdown-menu" role="menu">#}
+                    {#                                    <li><a href="#">任务</a></li>#}
+                    {#                                </ul>#}
+                    {#                            </li>#}
+                    {#                        </ul>#}
+                    {#                    </div>#}
+                </div>
+            </nav>
+        {% endblock %}
+        {% block content %}
+            <div id="content">
+                {% block sidebar %}
+                    <div id="sidebar">
+
+                    </div>
+                {% endblock %}
+                {% block main %}
+                    <div id="main">
+
+                    </div>
+                {% endblock %}
+            </div>
+        {% endblock %}
+    </div>
+{% endblock %}

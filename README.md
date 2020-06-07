@@ -1,11 +1,7 @@
 ## 医院信息系统大作业
 ### 必备知识
 * 你可能会疑惑为什么以下介绍的准备或者启动好多都是终端输入命令，因为在实际部署的时候，你是没有pycharm的，你没有任何的IDE可以使用。
-* 本项目大部分主要是CURD的操作(我们也没空做其他额外的操作了)，会使用antd和bootstrap进行开发
-    * [jquery](https://www.jquery123.com/)
-    * [antd](https://ant.design/docs/react/introduce-cn)
-    * [bootstrap](https://v4.bootcss.com/)
-    * [flask](https://dormousehole.readthedocs.io/en/latest/)
+* 假设以后会正式上线，需要修改`.flaskenv`文件中的`FLASK_ENV`,变成生成环境`production`
 ### 项目准备
 * 首先在python的主环境中需要安装`pipenv`包，`pip install pipenv`
     * 在终端当前项目文件夹输入`pipenv install`，因为有`Pipfile`文件，所以顺便会把需要的包也装上

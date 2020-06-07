@@ -61,8 +61,11 @@ class Register(Base):
 
 
 class Treatment(Base):
-    id = db.Column(db.Integer, nullable=False, primary_key=True)
+    id = db.Column(db.Integer, nullable=False, autoincrement=True, primary_key=True)
+    price = db.Column(db.Float)
+    register_id = db.Column(db.Integer, db.ForeignKey('register.id'), primary_key=True)
     drug_id = db.Column(db.Integer, db.ForeignKey('drugs.id'), primary_key=True)
     project_id = db.Column(db.Integer, db.ForeignKey('projects.id'), primary_key=True)
+    register = db.relationship('Register', backref='treatment')
     drugs = db.relationship('Drugs', backref='treatment')
     projects = db.relationship('Projects', backref='treatment')
