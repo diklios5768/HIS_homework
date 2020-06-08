@@ -36,3 +36,18 @@ def doctor(username):
 @bp_user.route('/user/<string:username>/drugs')
 def drugs(username):
     return render_template("manager/drugs.html", username=username)
+
+
+@bp_user.route('/user/<string:username>/department_add')
+def department_add(username):
+    return render_template("manager/department_add.html", username=username)
+
+
+@bp_user.route('/user/<string:username>/doctor_add')
+def doctor_add(username):
+    return render_template("manager/doctor_add.html", username=username)
+
+
+@bp_user.route('/user/<string:username>/drugs_add')
+def drugs_add(username):
+    return render_template("manager/drugs_add.html", username=username)

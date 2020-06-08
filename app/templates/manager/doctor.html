@@ -9,7 +9,7 @@
                            class="layui-input">
                 </div>
                 <button class="layui-btn">确认</button>
-                <button class="layui-btn layui-btn-normal">添加</button>
+                <button class="layui-btn layui-btn-normal" type="button" onclick="doctor_add()">添加</button>
             </div>
         </div>
     </form>
@@ -54,10 +54,6 @@
                             content: ''
                         }
                     );
-                } else if (obj.event === 'add') {
-                    obj.update({
-                        get_drugs: '已拿药'
-                    })
                 } else if (obj.event === 'edit') {
 
                 } else if (obj.event === 'del') {
@@ -68,5 +64,9 @@
                 }
             })
         });
+
+        function doctor_add() {
+            window.location.href = '{{ url_for('user.doctor_add',username=username) }}';
+        }
     </script>
 {% endblock %}

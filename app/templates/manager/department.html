@@ -8,7 +8,7 @@
                     <input type="text" name="price_min" placeholder="请输入科室进行查询" autocomplete="off" class="layui-input">
                 </div>
                 <button class="layui-btn">确认</button>
-                <button class="layui-btn layui-btn-normal">添加</button>
+                <button class="layui-btn layui-btn-normal" onclick="department_add()" type="button">添加</button>
             </div>
         </div>
     </form>
@@ -58,10 +58,6 @@
                             content: ''
                         }
                     );
-                } else if (obj.event === 'add') {
-                    obj.update({
-                        get_drugs: '已拿药'
-                    })
                 } else if (obj.event === 'edit') {
 
                 } else if (obj.event === 'del') {
@@ -72,5 +68,9 @@
                 }
             })
         });
+
+        function department_add() {
+            window.location.href = '{{ url_for('user.department_add',username=username) }}';
+        }
     </script>
 {% endblock %}

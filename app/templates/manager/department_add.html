@@ -1,0 +1,62 @@
+{% extends "user/user_index.html" %}
+{% block main %}
+    <form class="layui-form" action="">
+        <div class="layui-form-item">
+            <label class="layui-form-label">部门等级</label>
+            <div class="layui-input-block">
+                <select id="choose_department_level" lay-filter="choose_department_level" name="choose_department_level"
+                        lay-verify="required"
+                        autocomplete="off" lay-search>
+                    <option value="0">请选择部门等级</option>
+                    <option value="1">一级部门</option>
+                    <option value="2">二级部门</option>
+                </select>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">选择一级部门</label>
+            <div class="layui-input-block">
+                <select id="first_department" name="first_department" lay-verify="required" autocomplete="off" disabled>
+                    <option value="0" selected>请选择属于哪个一级部门</option>
+                    <option value="">门诊部</option>
+                    <option value="">住院部</option>
+                    <option value="">急诊部</option>
+                </select>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">部门名称</label>
+            <div class="layui-input-block">
+                <input type="text" name="price_min" placeholder="请输入部门名称" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item layui-form-text">
+            <label class="layui-form-label">科室具体信息</label>
+            <div class="layui-input-block">
+                <textarea name="department_detail" placeholder="请输入科室具体信息" class="layui-textarea"></textarea>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-input-block">
+                <button class="layui-btn" lay-submit>确认添加</button>
+                <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+            </div>
+        </div>
+    </form>
+{% endblock %}
+{% block script %}
+    <script>
+        layui.use('form', function () {
+            let form = layui.form;
+            form.on('select(choose_department_level)', function (data) {
+                if (data.value === '1') {
+                    $("#first_department").removeAttr('disabled');
+                    form.render('select');
+                } else {
+                    $("#first_department").attr('disabled', true);
+                    form.render('select');
+                }
+            });
+        });
+    </script>
+{% endblock %}

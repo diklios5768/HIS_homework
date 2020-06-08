@@ -2,15 +2,13 @@
 {% block main %}
     <form class="layui-form" action="">
         <div class="layui-form-item">
-            <label class="layui-form-label">患者名称</label>
+            <label class="layui-form-label">医生名称</label>
             <div class="layui-input-block">
-                <input type="text" class="layui-input" name="patient_name" placeholder="请输入患者的名称" required
-                       lay-verify="required"
-                       autocomplete="off">
+                <input type="text" name="doctor_name" placeholder="请输入医生名称" autocomplete="off" class="layui-input">
             </div>
         </div>
         <div class="layui-form-item">
-            <label class="layui-form-label">挂号科室</label>
+            <label class="layui-form-label">选择科室</label>
             <div class="layui-input-block">
                 <select name="department" lay-verify="required" autocomplete="off">
                     <option value="0" selected>请选择科室</option>
@@ -23,24 +21,27 @@
             </div>
         </div>
         <div class="layui-form-item">
-            <label class="layui-form-label">主治医生</label>
+            <label class="layui-form-label">职位</label>
             <div class="layui-input-block">
-                <select name="doctor" lay-verify="required" autocomplete="off">
-                    <option value="0" selected>请选择医生</option>
-                    <option value="">周在雍</option>
-                    <option value="">王兆恒 主任</option>
-                </select>
+                <input type="text" name="doctor_position" placeholder="请输入医生职位" autocomplete="off" class="layui-input">
             </div>
         </div>
         <div class="layui-form-item">
-            <label class="layui-form-label">病症详情</label>
+            <label class="layui-form-label">性别</label>
             <div class="layui-input-block">
-                <input type="text" class="layui-input" name="disease" placeholder="请输入一些症状描述信息" autocomplete="off">
+                <input type="radio" name="sex" value="nan" title="男" checked>
+                <input type="radio" name="sex" value="nv" title="女">
+            </div>
+        </div>
+        <div class="layui-form-item layui-form-text">
+            <label class="layui-form-label">医生具体信息</label>
+            <div class="layui-input-block">
+                <textarea name="department_detail" placeholder="请输入医生具体信息" class="layui-textarea"></textarea>
             </div>
         </div>
         <div class="layui-form-item">
             <div class="layui-input-block">
-                <button class="layui-btn" lay-submit>立即提交</button>
+                <button class="layui-btn" lay-submit>确认添加</button>
                 <button type="reset" class="layui-btn layui-btn-primary">重置</button>
             </div>
         </div>

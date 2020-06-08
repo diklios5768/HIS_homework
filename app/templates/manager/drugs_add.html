@@ -1,0 +1,57 @@
+{% extends "user/user_index.html" %}
+{% block main %}
+    <form class="layui-form" action="">
+        <div class="layui-form-item">
+            <label class="layui-form-label">药品名称</label>
+            <div class="layui-input-block">
+                <input type="text" name="drugs_name" placeholder="请输入药品名称" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">单位</label>
+            <div class="layui-input-block">
+                <input type="radio" name="unit" value="he" title="盒" checked>
+                <input type="radio" name="unit" value="zhi" title="支">
+                <input type="radio" name="unit" value="ji" title="剂">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">价格</label>
+            <div class="layui-input-block">
+                <input type="text" name="drugs_price" placeholder="请输入药品价格" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">选择药品种类</label>
+            <div class="layui-input-block">
+                <select name="department" lay-verify="required" autocomplete="off">
+                    <option value="0" selected>请选择药品种类</option>
+                    <optgroup label="片剂">
+                        <option value="">肠溶片</option>
+                        <option value="">包衣片</option>
+                        <option>……</option>
+                    </optgroup>
+                </select>
+            </div>
+        </div>
+        <div class="layui-form-item layui-form-text">
+            <label class="layui-form-label">药品具体信息</label>
+            <div class="layui-input-block">
+                <textarea name="drugs_detail" placeholder="请输入药品具体信息" class="layui-textarea"></textarea>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-input-block">
+                <button class="layui-btn" lay-submit>确认添加</button>
+                <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+            </div>
+        </div>
+    </form>
+{% endblock %}
+{% block script %}
+    <script>
+        layui.use('form', function () {
+            let form = layui.form;
+        });
+    </script>
+{% endblock %}
